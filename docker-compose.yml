@@ -1,0 +1,16 @@
+services:
+  golang:
+    container_name: golang
+    build:
+      context: .
+      dockerfile: ./docker/golang/Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./build:/app/build
+      - ./go.mod:/app/go.mod
+    tty: true
+    restart: always
+    env_file: # .envファイル
+      - ./src/.go_env
+    environment:
+      - TZ=Asia/Tokyo
