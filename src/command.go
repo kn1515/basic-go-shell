@@ -61,6 +61,8 @@ func runCommand(tokens []string, stdinFd, stdoutFd *os.File) {
         }
         if stdoutFd != nil {
             cmd.Stdout = stdoutFd
+        } else {
+            cmd.Stdout = os.Stdout
         }
         cmd.Stderr = os.Stderr
 
