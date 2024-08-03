@@ -34,9 +34,11 @@ down: ## remove docker containers.
 	@$(DOCKER_COMPOSE) down
 
 .PHONY: help
-help: ## display this help screen
-    @grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE) | \
-	awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+help:
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "Targets:"
+	@awk 'BEGIN {FS = ":.*#"} /^[a-zA-Z_-]+:.*?#/ {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 %:
 	@echo 'command "$@" is not found.'
